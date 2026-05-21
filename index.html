@@ -1,526 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed Mahmoud | Data Analyst</title>
+    <title>Ahmed Mahmoud | Data Analyst & BI Devolper</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Ultra Modern Dark Theme */
+        /* Cyber-Minimalist Dark Theme */
         :root {
-            --bg-dark: #0b1120;
-            --sidebar-bg: #111827;
-            --card-bg: #1e293b;
-            --accent-primary: #38bdf8;
-            --accent-secondary: #818cf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
+            --bg-main: #050505;
+            --bg-surface: #121212;
+            --bg-surface-light: #1e1e1e;
+            --accent-primary: #00e5ff;
+            --accent-secondary: #651fff;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-glow: rgba(0, 229, 255, 0.2);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.7;
-            display: flex;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
 
-        /* --- SIDEBAR STYLES --- */
-        .sidebar {
-            width: 320px;
-            height: 100vh;
-            background-color: var(--sidebar-bg);
+        /* --- NAVBAR --- */
+        nav {
             position: fixed;
-            left: 0;
             top: 0;
-            border-right: 1px solid var(--border-color);
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
-            z-index: 100;
-        }
-
-        .profile-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            /* طريقة الإطار المتدرج الصحيحة للصور */
-            padding: 4px;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
-        }
-
-        .sidebar h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .sidebar h2 {
-            font-size: 1rem;
-            color: var(--accent-primary);
-            font-weight: 500;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .contact-info {
             width: 100%;
-            margin-bottom: 30px;
-        }
-
-        .contact-info p,
-        .contact-info a {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1000;
+            padding: 20px 5%;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            text-decoration: none;
-            transition: color 0.3s;
         }
 
-        .contact-info a:hover {
-            color: var(--accent-primary);
-        }
-
-        .contact-info i {
-            width: 20px;
-            color: var(--accent-secondary);
-            text-align: center;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
-            width: 100%;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: auto;
+            gap: 30px;
         }
 
         .nav-links a {
-            color: var(--text-main);
+            color: var(--text-secondary);
             text-decoration: none;
-            padding: 12px 15px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(30, 41, 59, 0.3);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            background: var(--accent-primary);
-            color: var(--bg-dark);
-            font-weight: 600;
+            color: var(--accent-primary);
         }
 
-        /* --- MAIN CONTENT STYLES --- */
-        .main-content {
-            margin-left: 320px;
-            padding: 60px 5%;
-            width: calc(100% - 320px);
+        /* --- CONTAINER & LAYOUT --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
         }
 
         section {
-            margin-bottom: 80px;
+            margin-bottom: 100px;
         }
 
-        .section-title {
-            font-size: 2.2rem;
+        .section-header {
             margin-bottom: 40px;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 40px;
-            height: 4px;
-            background: var(--accent-primary);
-            border-radius: 2px;
-        }
-
-        p.about-text {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 800px;
-        }
-
-        /* --- TIMELINE (EXPERIENCE & EDUCATION) --- */
-        .timeline {
-            position: relative;
-            border-left: 2px solid var(--border-color);
-            padding-left: 30px;
-            margin-left: 10px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -37px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent-primary);
-            box-shadow: 0 0 10px var(--accent-primary);
-        }
-
-        .timeline-date {
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-            font-weight: 600;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .timeline-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 5px;
-        }
-
-        .timeline-subtitle {
-            font-size: 1rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        .experience-list {
-            list-style-type: disc;
-            padding-left: 20px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .experience-list li {
-            margin-bottom: 8px;
-        }
-
-        /* --- SKILLS SECTION --- */
-        .skills-container {
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             gap: 15px;
         }
 
-        .skill-tag {
-            background-color: var(--sidebar-bg);
-            border: 1px solid var(--border-color);
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            color: var(--text-main);
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .section-line {
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), transparent);
+            flex-grow: 1;
+            opacity: 0.5;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            gap: 50px;
+            min-height: 70vh;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .hero-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .hero-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
         }
 
-        .skill-tag i {
+        .hero-socials a:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px var(--border-glow);
+            color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            width: 350px;
+            height: 350px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: -20px 20px 0px rgba(0, 229, 255, 0.1);
+        }
+
+        /* --- SKILLS CHIPS --- */
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-chip {
+            background: var(--bg-surface);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-chip i {
             color: var(--accent-primary);
         }
 
-        .skill-tag:hover {
+        .skill-chip:hover {
             border-color: var(--accent-primary);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.1);
+            background: var(--bg-surface-light);
+            transform: translateY(-2px);
         }
 
-        /* --- PROJECTS GRID --- */
-        .projects-grid {
+        /* --- CARDS (Projects & Certifications) --- */
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
-        .card {
-            background-color: var(--sidebar-bg);
-            border: 1px solid var(--border-color);
+        .bento-card {
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 16px;
             padding: 30px;
             transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-secondary);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        /* Project Logos Style */
-        .card-logo {
-            height: 45px;
-            width: auto;
-            max-width: 150px;
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .bento-card:hover::before {
+            opacity: 1;
+        }
+
+        .cert-icon {
+            font-size: 2.5rem;
+            color: var(--accent-secondary);
             margin-bottom: 20px;
-            object-fit: contain;
-            /* Optional: Add a slight brightness filter to make logos pop on dark background */
-            filter: brightness(1.1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
 
-        .card h3 {
+        .card-title {
             font-size: 1.3rem;
             margin-bottom: 10px;
+            font-weight: 600;
         }
 
-        .card p {
-            color: var(--text-muted);
+        .card-subtitle {
+            color: var(--accent-primary);
             font-size: 0.9rem;
             margin-bottom: 15px;
+            font-weight: 500;
         }
 
-        .card ul {
-            padding-left: 20px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+        .card-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             margin-bottom: 25px;
             flex-grow: 1;
         }
 
-        .card ul li {
-            margin-bottom: 8px;
-        }
-
-        .btn-view {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background: transparent;
-            color: var(--accent-primary);
-            border: 1px solid var(--accent-primary);
-            border-radius: 8px;
-            text-align: center;
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
             text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            margin-top: auto;
+        }
+
+        .card-link i {
+            font-size: 0.85rem;
+            transition: transform 0.3s;
+        }
+
+        .card-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .card-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* --- EXPERIENCE TIMELINE --- */
+        .timeline-box {
+            background: var(--bg-surface);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 30px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .exp-title {
+            font-size: 1.4rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+        }
+
+        .exp-company {
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .exp-date {
+            color: var(--text-secondary);
             font-size: 0.9rem;
+            background: rgba(255,255,255,0.05);
+            padding: 5px 12px;
+            border-radius: 20px;
         }
 
-        .btn-view:hover {
-            background: var(--accent-primary);
-            color: var(--bg-dark);
+        .exp-list {
+            list-style: none;
         }
 
-        /* Responsive Sidebar */
+        .exp-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .exp-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        /* --- MODAL (LIGHTBOX) STYLES --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.85); 
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px var(--border-glow);
+            animation: zoomIn 0.3s ease;
+            object-fit: contain;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 2001;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Responsive */
         @media (max-width: 900px) {
-            body {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 50px;
+            }
+            .hero-socials {
+                justify-content: center;
+            }
+            .exp-header {
                 flex-direction: column;
+                gap: 10px;
             }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                padding: 40px 20px;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
+            .hero-image {
+                width: 250px;
+                height: 250px;
             }
-
-            .main-content {
-                margin-left: 0;
-                width: 100%;
-                padding: 40px 20px;
+            .nav-links {
+                display: none; 
+            }
+            .close-btn {
+                top: 10px;
+                right: 20px;
             }
         }
     </style>
 </head>
-
 <body>
 
-    <aside class="sidebar">
-        <img src="./Profile.jpg" alt="Ahmed Mahmoud" class="profile-img">
-        <h1>Ahmed Mahmoud</h1>
-        <h2>Data Analyst</h2>
-
-        <div class="contact-info">
-            <p><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</p>
-            <a href="tel:+201019048936"><i class="fa-solid fa-phone"></i> +20 10 190 48 936</a>
-            <a href="mailto:am4120362@gmail.com"><i class="fa-solid fa-envelope"></i> am4120362@gmail.com</a>
-            <a href="https://linkedin.com/in/ahmed-mahmoud-data/" target="_blank"><i class="fa-brands fa-linkedin"></i>
-                LinkedIn</a>
-            <a href="https://github.com/Ahmed1242002" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-        </div>
-
+    <nav>
+        <div class="logo">A.M</div>
         <div class="nav-links">
-            <a href="#about"><i class="fa-solid fa-user"></i> About Me</a>
-            <a href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a>
-            <a href="#skills"><i class="fa-solid fa-code"></i> Skills</a>
-            <a href="#projects"><i class="fa-solid fa-folder-open"></i> Projects</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#projects">Projects</a>
         </div>
-    </aside>
+    </nav>
 
-    <main class="main-content">
-
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p class="about-text">I am a Data Analyst with a solid foundation in Computer Science, specializing in
-                building end-to-end data pipelines and developing interactive Business Intelligence dashboards. I excel
-                at extracting actionable metrics from complex datasets. Whether it is web scraping market data,
-                optimizing telecom network reporting, or tracking logistics KPIs, I focus on delivering data-driven
-                solutions that improve operational efficiency and strategic decision-making.</p>
-        </section>
-
-        <section id="experience">
-            <h2 class="section-title">Experience & Education</h2>
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <span class="timeline-date">Jan 2026 - Present</span>
-                    <h3 class="timeline-title">Performance Analyst</h3>
-                    <p class="timeline-subtitle">Huawei (Supporting Orange Egypt Account)</p>
-                    <ul class="experience-list">
-                        <li>Spearheaded the automation of the weekly Network Unavailability Ratio (NUR) reporting
-                            pipeline.</li>
-                        <li>Replaced legacy manual Excel macro processes with robust Python scripts, drastically
-                            reducing processing time from 16 hours to under 1 minute.</li>
-                        <li>Designed and deployed dynamic Power BI executive dashboards for tracking real-time telecom
-                            network performance.</li>
-                    </ul>
+    <div class="container">
+        <section id="about" class="hero">
+            <div class="hero-content">
+                <h2>Hello, I'm</h2>
+                <h1>Ahmed Mahmoud</h1>
+                <p class="hero-text">
+                A results-driven Data Analyst with a proven track record across the Telecom, Sales, and Medical sectors. I specialize in rigorous data cleaning, complex data modeling, and engineering end-to-end automated reporting pipelines. By leveraging tools like Python, SQL, and Power BI, I transform messy, raw datasets into clear, actionable business intelligence. My primary focus is on eliminating manual workflows—having successfully replaced legacy systems with automated scripts that reduce processing time from hours to seconds—empowering stakeholders to focus on strategic, data-driven decision-making.                </p>
+                <div class="hero-socials">
+                    <a href="mailto:am4120362@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="tel:+201019048936"><i class="fa-solid fa-phone"></i></a>
+                    <a href="https://linkedin.com/in/ahmed-mahmoud-data/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Ahmed1242002" target="_blank"><i class="fa-brands fa-github"></i></a>
                 </div>
-
-
-                <div class="timeline-item">
-                    <span class="timeline-date">2022 - Present </span>
-                    <h3 class="timeline-title">Private Fitness Coach</h3>
-                    <p class="timeline-subtitle">Fitsness Club & Freelance</p>
-                    <p class="about-text" style="font-size: 0.95rem; margin-top: 10px;">Developed strong communication
-                        and leadership skills over 4+ years. I continue to design customized fitness programs and track
-                        client progress metrics, successfully balancing my passion for high-intensity coaching with my
-                        professional career in data analytics.</p>
-                </div>
-
-
-                <div class="timeline-item">
-                    <span class="timeline-date">Late 2025</span>
-                    <h3 class="timeline-title">Military Service Completion</h3>
-                    <p class="timeline-subtitle">Egyptian Armed Forces</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-date">May 2023 - Nov 2024</span>
-                    <h3 class="timeline-title">Operations Specialist</h3>
-                    <p class="timeline-subtitle">SLS</p>
-                    <p class="about-text" style="font-size: 0.95rem; margin-top: 10px;">Gained hands-on domain knowledge
-                        in supply chain processes and operations. Tracked performance KPIs and identified workflow
-                        bottlenecks, which heavily built my business acumen for logistics data analysis.</p>
-                </div>
-
-
-                <div class="timeline-item">
-                    <span class="timeline-date">2020 - 2024</span>
-                    <h3 class="timeline-title">Bachelor of Computer Science</h3>
-                    <p class="timeline-subtitle">Faculty of Computer Science</p>
-                </div>
-
-
-
             </div>
+            <img src="./Profile.jpg" alt="Ahmed Mahmoud" class="hero-image">
         </section>
 
         <section id="skills">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill-tag"><i class="fa-solid fa-database"></i> SQL Server</div>
-                <div class="skill-tag"><i class="fa-brands fa-python"></i> Python</div>
-                <div class="skill-tag"><i class="fa-solid fa-chart-column"></i> Power BI</div>
-                <div class="skill-tag"><i class="fa-solid fa-bolt"></i> Power Query</div>
-                <div class="skill-tag"><i class="fa-solid fa-table"></i> Advanced Excel</div>
-                <div class="skill-tag"><i class="fa-solid fa-calculator"></i> DAX</div>
-                <div class="skill-tag"><i class="fa-solid fa-diagram-project"></i> Data Modeling</div>
-                <div class="skill-tag"><i class="fa-solid fa-spider"></i> Web Scraping</div>
-                <div class="skill-tag"><i class="fa-solid fa-chart-line"></i> Business Intelligence</div>
+            <div class="section-header">
+                <h2>Technical Arsenal</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-wrapper">
+                <div class="skill-chip"><i class="fa-solid fa-database"></i> SQL Server</div>
+                <div class="skill-chip"><i class="fa-brands fa-python"></i> Python (Pandas/NumPy)</div>
+                <div class="skill-chip"><i class="fa-solid fa-chart-simple"></i> Power BI & DAX</div>
+                <div class="skill-chip"><i class="fa-brands fa-microsoft"></i> Microsoft Azure</div>
+                <div class="skill-chip"><i class="fa-solid fa-gears"></i> Automation Tools</div>
+                <div class="skill-chip"><i class="fa-solid fa-bolt"></i> Power Query</div>
+                <div class="skill-chip"><i class="fa-solid fa-table"></i> Advanced Excel</div>
+                <div class="skill-chip"><i class="fa-solid fa-spider"></i> Web Scraping</div>
+                <div class="skill-chip"><i class="fa-solid fa-brain"></i> Machine Learning</div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="section-header">
+                <h2>Experience</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="timeline-box">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">Performance Analyst</h3>
+                        <div class="exp-company">Huawei | Orange corporate (Smart Village,Egypt)</div>
+                    </div>
+                    <div class="exp-date">Jan 2026 - Present</div>
+                </div>
+                <ul class="exp-list">
+                    <li>Spearheaded the automation of the weekly NUR reporting pipeline using Python
+                        and SQL, replacing manual legacy workflows and drastically reducing processing
+                        time from 16 hours to under 1 minute.</li>
+                    <li>Engineered complex SQL queries (CTEs, Window Functions, Stored Procedures)
+                        to clean and validate 1M+ network records, ensuring 99% data accuracy.</li>
+                    <li>Designed dynamic Power BI executive dashboards utilizing Star Schema models
+                        and advanced DAX to track 20+ critical KPIs in real-time, replacing static Excel
+                        reports.</li>
+                    <li>Delivered actionable insights to senior management by identifying key
+                        performance bottlenecks, directly supporting data-driven network optimization. </li>
+                </ul>
+            </div>
+
+            <div class="timeline-box">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">Freelance Data Analyst</h3>
+                        <div class="exp-company">Mostaql & Khamsat Platforms</div>
+                    </div>
+                    <div class="exp-date">Feb 2026 - Present</div>
+                </div>
+                <ul class="exp-list">
+                    <li>Delivering tailored data analysis and business intelligence solutions for diverse clients across multiple sectors, including Medical and Sales.</li>
+                    <li>Cleaning and transforming complex, unstructured, and messy datasets into accurate, ready-to-analyze formats.</li>
+                    <li>Building automated reporting tools and interactive dashboards using Power BI, Python, and Advanced Excel to address specific business needs.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-box">
+                <div class="exp-header">
+                    <div>
+                        <h3 class="exp-title">Operations Specialist</h3>
+                        <div class="exp-company">SLS</div>
+                    </div>
+                    <div class="exp-date">May 2023 - Nov 2024</div>
+                </div>
+                <ul class="exp-list">
+                    <li>Managed supply chain operations and tracked performance KPIs to identify and resolve workflow bottlenecks.</li>
+                    <li>Developed strong business acumen in logistics data analysis and process optimization.</li>
+                </ul>
+            </div>
+        </section>
+        <section id="certifications">
+            <div class="section-header">
+                <h2>Licenses & Certifications</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="grid-container">
+
+                <div class="bento-card">
+                    <i class="fa-solid fa-robot cert-icon"></i>
+                    <h3 class="card-title">Machine Learning Engineer</h3>
+                    <div class="card-subtitle">Digital Egypt Pioneers (DEPI) & Microsoft</div>
+                    <p class="card-text">Comprehensive AI & Data Science training covering ML engineering job profiles.</p>
+                    <a class="card-link view-cert-btn" data-img="./Microsoft_Machine_Learning ENG.jpg"><i class="fa-solid fa-expand"></i> View Certificate</a>
+                </div>
+
+                <div class="bento-card">
+                    <i class="fa-solid fa-cloud cert-icon"></i>
+                    <h3 class="card-title">AZ-900 Azure Fundamentals</h3>
+                    <div class="card-subtitle">Udemy</div>
+                    <p class="card-text">Mastered foundational cloud concepts and core Microsoft Azure architectural components in Arabic.</p>
+                    <a class="card-link view-cert-btn" data-img="./Azure.jpg"><i class="fa-solid fa-expand"></i> View Certificate</a>
+                </div>
+
+                <div class="bento-card">
+                    <i class="fa-brands fa-python cert-icon"></i>
+                    <h3 class="card-title">Data Analysis with Python & Pandas</h3>
+                    <div class="card-subtitle">LinkedIn Learning</div>
+                    <p class="card-text">Advanced data manipulation, cleaning, and exploratory data analysis.</p>
+                    <a href="./CertificateOfCompletion_Data Analysis with Python and Pandas.pdf" target="_blank" class="card-link"><i class="fa-solid fa-external-link-alt"></i> Open PDF Certificate</a>
+                </div>
+
+                <div class="bento-card">
+                    <i class="fa-solid fa-code cert-icon"></i>
+                    <h3 class="card-title">SQL Certifications</h3>
+                    <div class="card-subtitle">HackerRank</div>
+                    <p class="card-text">Verified proficiency in complex queries, window functions, and database logic.</p>
+                    <div style="display: flex; gap: 15px; margin-top: auto;">
+                        <a href="https://www.hackerrank.com/certificates/iframe/6aa75085eb0b" class="card-link" target="_blank">Basic</a>
+                        <a href="https://www.hackerrank.com/certificates/iframe/0acd47f912e4" class="card-link" target="_blank">Intermediate</a>
+                        <a href="https://www.hackerrank.com/certificates/iframe/696cacc01259" class="card-link" target="_blank">Advanced</a>
+                    </div>
+                </div>
+
+                <div class="bento-card">
+                    <i class="fa-solid fa-language cert-icon"></i>
+                    <h3 class="card-title">Business English Track</h3>
+                    <div class="card-subtitle">OTO Courses / DEPI</div>
+                    <p class="card-text">Advanced business communication skills within a professional corporate environment.</p>
+                    <a class="card-link view-cert-btn" data-img="./Business_English.jpg"><i class="fa-solid fa-expand"></i> View Certificate</a>
+                </div>
+
+                <div class="bento-card">
+                    <i class="fa-solid fa-graduation-cap cert-icon"></i>
+                    <h3 class="card-title">English Language Course</h3>
+                    <div class="card-subtitle">4Level1 Center</div>
+                    <p class="card-text">Completed comprehensive English language training focused on professional fluency and effective communication.</p>
+                    <a class="card-link view-cert-btn" data-img="./4level1.jpg"><i class="fa-solid fa-expand"></i> View Certificate</a>
+                </div>
+
+                <div class="bento-card">
+                    <i class="fa-solid fa-microchip cert-icon"></i>
+                    <h3 class="card-title">Embedded Systems Diploma & Challenge</h3>
+                    <div class="card-subtitle">AMIT & Orange Digital Center</div>
+                    <p class="card-text">175-Hour rigorous engineering diploma & hackathon challenge (Grade: 94%). Solidified my core programming logic.</p>
+                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+                        <a class="card-link view-cert-btn" data-img="./AMIT.jpg"><i class="fa-solid fa-expand"></i> View Diploma</a>
+                        <a class="card-link view-cert-btn" data-img="./Hacksion.jpg"><i class="fa-solid fa-expand"></i> Orange Hackathon</a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <section id="projects">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="grid-container">
 
-                <div class="card">
-                    <img src="Orange.png" alt="Orange Logo" class="card-logo">
-                    <h3>Automated NUR Pipeline</h3>
-                    <p>Enterprise-level telecom network performance tracking.</p>
-                    <ul>
+                <div class="bento-card">
+                    <h3 class="card-title">Automated NUR Pipeline</h3>
+                    <div class="card-subtitle">Telecom Domain</div>
+                    <ul class="exp-list" style="margin-bottom: 20px;">
                         <li>Slashed weekly reporting time from 16 hours to under 1 minute.</li>
                         <li>Automated workflows using Python and SQL scripts.</li>
                     </ul>
-                    <a href="#" class="btn-view">Coming Soon</a>
+                    <a href="#" class="card-link">Coming Soon <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <div class="card">
-                    <img src="MISUO_Logo.png" alt="MISUO Logo" class="card-logo">
-                    <h3>E-commerce Logistics</h3>
-                    <p>Supply chain and sales analysis over a 4-month period.</p>
-                    <ul>
+                <div class="bento-card">
+                    <h3 class="card-title">E-commerce Logistics Analysis</h3>
+                    <div class="card-subtitle">Supply Chain</div>
+                    <ul class="exp-list" style="margin-bottom: 20px;">
                         <li>Structured 1.28M in sales from manual data entries.</li>
                         <li>Identified a 17.6% return rate as a major profit leak.</li>
                     </ul>
-                    <a href="https://drive.google.com/file/d/1yjUBaTZXGJsFVeFv6zSu5i2wWToNdiw5/view?usp=drive_link"
-                        target="_blank" class="btn-view">View Case Study</a>
+                    <a href="https://drive.google.com/file/d/1yjUBaTZXGJsFVeFv6zSu5i2wWToNdiw5/view?usp=drive_link" target="_blank" class="card-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <div class="card">
-                    <img src="Aqaar_map.jpg" alt="Real Estate" class="card-logo">
-                    <h3>Real Estate Intelligence</h3>
-                    <p>Market analysis uncovering true pricing behaviors.</p>
-                    <ul>
+                <div class="bento-card">
+                    <h3 class="card-title">Real Estate Intelligence</h3>
+                    <div class="card-subtitle">Market Analysis</div>
+                    <ul class="exp-list" style="margin-bottom: 20px;">
                         <li>Web scraped 10,000+ property listings using Python.</li>
                         <li>Delivered strategic recommendations for investment.</li>
                     </ul>
-                    <a href="https://drive.google.com/file/d/1Df9ois1ZELogYvF7HduQwSb2g1yAT__2/view?usp=drive_link  "
-                        class="btn-view">View Study</a>
+                    <a href="https://drive.google.com/file/d/1Df9ois1ZELogYvF7HduQwSb2g1yAT__2/view?usp=drive_link" target="_blank" class="card-link">View Study <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <div class="card">
-                    <img src="Salah.svg" alt="Salla Logo" class="card-logo">
-                    <h3>Call Center Efficiency</h3>
-                    <p>Operational evaluation across a massive dataset.</p>
-                    <ul>
+                <div class="bento-card">
+                    <h3 class="card-title">Call Center Efficiency</h3>
+                    <div class="card-subtitle">Operations</div>
+                    <ul class="exp-list" style="margin-bottom: 20px;">
                         <li>Analyzed over 2 Million call records to track SLAs.</li>
                         <li>Identified a forecasting accuracy bottleneck at 71.6%.</li>
                     </ul>
-                    <a href="https://drive.google.com/file/d/10YN4DUn8mgoqZivwUJ1JLXVEfGCqeG6R/view?usp=drive_link"
-                        class="btn-view">View Case Study</a>
+                    <a href="https://drive.google.com/file/d/10YN4DUn8mgoqZivwUJ1JLXVEfGCqeG6R/view?usp=drive_link" target="_blank" class="card-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
             </div>
         </section>
 
-    </main>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <img class="modal-content" id="modalImage" src="" alt="Certification">
+    </div>
+
+    <script>
+        // JavaScript for Modal functionality
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeBtn = document.getElementById("closeModalBtn");
+        
+        // Select all buttons that have the view-cert-btn class
+        const certButtons = document.querySelectorAll(".view-cert-btn");
+
+        // When the user clicks on a certificate button, open the modal and set the image src
+        certButtons.forEach(btn => {
+            btn.addEventListener("click", function() {
+                modal.style.display = "flex";
+                modalImg.src = this.getAttribute("data-img");
+            });
+        });
+
+        // Close the modal when the user clicks on <span> (x)
+        closeBtn.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        // Close the modal when the user clicks anywhere outside of the image
+        window.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
 
 </body>
-
 </html>
