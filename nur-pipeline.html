@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUR Automation Case Study | Ahmed Mahmoud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-main: #050505; --bg-surface: #121212; --accent-primary: #00e5ff; --text-primary: #ffffff; --text-secondary: #a0a0a0; }
+        body { font-family: 'Outfit', sans-serif; background-color: var(--bg-main); color: var(--text-primary); line-height: 1.6; padding: 40px 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--bg-surface); padding: 50px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .back-btn { color: var(--accent-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; font-weight: 500; transition: transform 0.3s; }
+        .back-btn:hover { transform: translateX(-5px); }
+        h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 700; letter-spacing: -1px; }
+        .tags { color: var(--text-secondary); margin-bottom: 40px; font-size: 0.95rem; display: flex; gap: 10px; flex-wrap: wrap; }
+        .tags span { background: rgba(255,255,255,0.05); padding: 5px 15px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        h2 { color: var(--accent-primary); margin-top: 40px; margin-bottom: 20px; font-size: 1.6rem; display: flex; align-items: center; gap: 10px; }
+        p, li { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 15px; }
+        ul { padding-left: 20px; margin-bottom: 30px; }
+        .highlight-box { background: linear-gradient(145deg, rgba(0, 229, 255, 0.1), rgba(0,0,0,0)); border-left: 4px solid var(--accent-primary); padding: 25px; margin: 40px 0; border-radius: 0 12px 12px 0; }
+        .highlight-box h3 { color: #fff; margin-bottom: 15px; font-size: 1.3rem; }
+        /* Dashboard Showcase Style */
+        .dashboard-preview { margin: 50px 0; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0, 229, 255, 0.2); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 255, 0.1); position: relative; background: #000; }
+        .dashboard-preview img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
+        .dashboard-preview:hover img { transform: scale(1.02); }
+        .preview-label { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); padding: 8px 15px; border-radius: 8px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); color: #fff; z-index: 2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+        <h1>Automated NUR Reporting Pipeline</h1>
+        <div class="tags">
+            <span>Telecom Domain</span><span>Python</span><span>SQL Server</span><span>Power BI</span>
+        </div>
+
+        <h2><i class="fa-solid fa-bullseye"></i> The Challenge</h2>
+        <p>The weekly Network Unavailability Ratio (NUR) reporting was a highly manual, time-consuming process. Extracting raw logs, cleaning the data, and applying business rules took approximately <strong>16 hours of manual work per week</strong>, delaying critical executive decisions and increasing the risk of human error.</p>
+
+        <div class="dashboard-preview">
+            <div class="preview-label"><i class="fa-solid fa-play"></i> Live Dashboard Preview</div>
+            <img src="./Orange.gif" alt="NUR Orange Dashboard Preview">
+        </div>
+
+        <h2><i class="fa-solid fa-gears"></i> Solution Architecture</h2>
+        <p>Due to strict data confidentiality (NDA), the raw code cannot be shared. However, the solution was engineered using a fully automated ETL pipeline:</p>
+        <ul>
+            <li><strong>Extraction:</strong> Scheduled SQL Server scripts pull operational network logs.</li>
+            <li><strong>Transformation:</strong> Python (Pandas) scripts clean the raw data and calculate NUR metrics dynamically.</li>
+            <li><strong>Visualization:</strong> The clean data is pushed to a Power BI Star Schema, driving a real-time dashboard.</li>
+        </ul>
+
+        <div class="highlight-box">
+            <h3><i class="fa-solid fa-chart-line"></i> Business Impact</h3>
+            <ul>
+                <li><strong>Efficiency:</strong> Processing time was slashed from 16 hours to <strong>under 3 minutes</strong>.</li>
+                <li><strong>Accuracy:</strong> Eliminated manual data entry workflows and zeroed out human error.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
